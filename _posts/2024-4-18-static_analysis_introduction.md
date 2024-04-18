@@ -1,3 +1,12 @@
+---
+layout: post
+title: "静态程序分析介绍"
+date: 2024-4-18
+tags: [static-analysis]
+comments: true
+author: zxy
+---
+
 ### PL and Static Analysis（程序设计语言与静态分析）
 
 #### 关系图：
