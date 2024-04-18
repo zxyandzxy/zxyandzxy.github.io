@@ -49,7 +49,7 @@ author: zxy
 
 **完美的程序静态分析**：sound 且 complete（就是 Truth）
 
-![image-20240119122152386](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119122152386.png)
+![image-20240119122152386](https://zxyandzxy.github.io/images/image-20240119122152386.png)
 
 sound：也即 overapproximate，所有问题都报出来了，但是存在误报
 
@@ -81,7 +81,7 @@ complete：也即 underapproximate，报出来的问题是真实存在的，但�
 
 abstraction：（不关心具体值，而是抽象成一种特性）
 
-![image-20240119123429011](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119123429011.png)
+![image-20240119123429011](https://zxyandzxy.github.io/images/image-20240119123429011.png)
 
 over-approximation：定义转换函数和控制流汇合方法
 
@@ -89,11 +89,11 @@ over-approximation：定义转换函数和控制流汇合方法
 - 转移函数是根据 "要分析的问题 "和不同程序语句的 "语义 "来定义的。
 - 转换函数示例：
 
-![image-20240119123623847](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119123623847.png)
+![image-20240119123623847](https://zxyandzxy.github.io/images/image-20240119123623847.png)
 
 - 控制流示例：
 
-![image-20240119123914769](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119123914769.png)
+![image-20240119123914769](https://zxyandzxy.github.io/images/image-20240119123914769.png)
 
 ### 重点问题
 
