@@ -11,7 +11,7 @@ author: zxy
 
 一句话：不同的数据流分析技术有不同的数据抽象和不同的数据流安全近似策略（即不同的转换函数和不同的控制流处理）
 
-![image-20240119141617095](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119141617095.png)
+![image-20240119141617095](https://zxyandzxy.github.io/images/image-20240119141617095.png)
 
 数据流分析要做的事：
 
@@ -29,11 +29,11 @@ author: zxy
 - 可能的数据流值的集合是此应用程序的域
 - 数据流分析是为所有语句在 IN[s]和 OUT[s]上找到一个满足一组 safe-approximation directed constraints 的解决方案。（即满足转换函数和控制流约束）
 
-![image-20240119141810822](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119141810822.png)
+![image-20240119141810822](https://zxyandzxy.github.io/images/image-20240119141810822.png)
 
 #### 控制流约束
 
-![image-20240119142356441](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119142356441.png)
+![image-20240119142356441](https://zxyandzxy.github.io/images/image-20240119142356441.png)
 
 两个方向数据流分析：前向数据流分析+后向数据流分析
 
@@ -47,7 +47,7 @@ author: zxy
 
 定义：在程序点 p 处的定值 d 到达程序点 q：如果有一条从 p 到 q 的路径使得 d 没有在这条路径上被“杀死”
 
-![image-20240119142911147](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119142911147.png)
+![image-20240119142911147](https://zxyandzxy.github.io/images/image-20240119142911147.png)
 
 作用：到达定值可以用来检测可能的未定义变量。例如，在控制流图入口（entry 节点）为每个变量 v 引入一个虚拟定义，如果 v 的虚拟定义达到使用 v 的程序点 p，则 v 可以在定义之前使用(即未定义的 v 到达 p)。
 
@@ -58,7 +58,7 @@ author: zxy
 - 在每一个程序点都有这么一串二进制数
 - 为程序的所有**定值**设置一个二进制位，若第 i 个定值成立，则第 i 为置 1
 
-![image-20240119143252007](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119143252007.png)
+![image-20240119143252007](https://zxyandzxy.github.io/images/image-20240119143252007.png)
 
 #### 转换函数
 
@@ -66,21 +66,21 @@ author: zxy
 
 我们以一个基本块 B 为单位进行分析，gen(B)是这个基本块生成的所有定值，kill(B)是这个基本块杀死的所有定值
 
-![image-20240119143441702](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119143441702.png)
+![image-20240119143441702](https://zxyandzxy.github.io/images/image-20240119143441702.png)
 
-栗子：![image-20240119143915606](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119143915606.png)
+栗子：![image-20240119143915606](https://zxyandzxy.github.io/images/image-20240119143915606.png)
 
 #### 控制流
 
 为了保证 safe-approximation，只要有一条程序路径可以传递定值，那就认为在程序汇合点处可以定值。
 
-![image-20240119144230307](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119144230307.png)
+![image-20240119144230307](https://zxyandzxy.github.io/images/image-20240119144230307.png)
 
 这里的 U 表示 union，用二进制就是**或**操作（只能从 0->0，0->1，1->1，不能从 1->0）
 
 #### 算法
 
-![image-20240119144417309](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119144417309.png)
+![image-20240119144417309](https://zxyandzxy.github.io/images/image-20240119144417309.png)
 
 算法中：
 
@@ -103,7 +103,7 @@ OUT[B] = ∅ //程序还没运行时，每个变量都没定值
 
 定义：在一个程序点 p，如果变量 v 活跃，那么 v 就可以在沿着 p 到 exit 的一条程序路径上使用
 
-![image-20240119145810923](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119145810923.png)
+![image-20240119145810923](https://zxyandzxy.github.io/images/image-20240119145810923.png)
 
 作用：活跃变量的信息可用于寄存器分配。例如，在某些情况下，所有寄存器都满了，我们需要使用一个寄存器，那么我们应该倾向于使用存储不活跃变量的寄存器
 
@@ -114,11 +114,11 @@ OUT[B] = ∅ //程序还没运行时，每个变量都没定值
 - 在所有程序点都有一个二进制串
 - 为程序所有的变量设置一个二进制位，如果在某个程序点这个变量活跃，那么这个位置为 1
 
-![image-20240119150335417](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119150335417.png)
+![image-20240119150335417](https://zxyandzxy.github.io/images/image-20240119150335417.png)
 
 #### 转换函数与控制流
 
-![image-20240119150736274](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119150736274.png)
+![image-20240119150736274](https://zxyandzxy.github.io/images/image-20240119150736274.png)
 
 对于语句 x = y op z 来说，y，z 被 use 了，x 被 redefine 了
 
@@ -132,7 +132,7 @@ U：表示**或**操作
 
 #### 算法
 
-![image-20240119151136256](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119151136256.png)
+![image-20240119151136256](https://zxyandzxy.github.io/images/image-20240119151136256.png)
 
 IN[exit] = ∅：出口处不会再有变量被使用，全部不活跃
 
@@ -163,7 +163,7 @@ IN[B] = ∅：开始未扫描任何语句，全部变量不活跃
 
 对于所有表达式，如果在这个程序点可用，就置为 1
 
-![image-20240119152658605](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119152658605.png)
+![image-20240119152658605](https://zxyandzxy.github.io/images/image-20240119152658605.png)
 
 #### 转换函数和控制流
 
@@ -171,13 +171,13 @@ gen[B]：基本块 B 产生的可用表达式
 
 kill[B]：基本块 B 杀死的可用表达式
 
-![image-20240119152935917](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119152935917.png)
+![image-20240119152935917](https://zxyandzxy.github.io/images/image-20240119152935917.png)
 
 倒 U 表示：**与**操作，即所有路径都有才认为可用
 
 #### 算法
 
-![image-20240119153050290](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119153050290.png)
+![image-20240119153050290](https://zxyandzxy.github.io/images/image-20240119153050290.png)
 
 OUT[entry] = ∅：程序入口必然没有可用表达式
 
@@ -187,7 +187,7 @@ OUT[B] = U：刚开始认为所有表达式可用，根据转换函数和控制�
 
 ### 总结三种数据流分析
 
-![image-20240119153731540](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119153731540.png)
+![image-20240119153731540](https://zxyandzxy.github.io/images/image-20240119153731540.png)
 
 ### 重点问题：
 
