@@ -11,13 +11,13 @@ author: zxy
 
 指针分析涉及的域和符号
 
-![image-20240119202646091](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119202646091.png)
+![image-20240119202646091](https://zxyandzxy.github.io/images/image-20240119202646091.png)
 
 pt：可以看成是一个 map，描述一个键值对（指针：指针所指向的对象集合）
 
 指针指向规则
 
-![image-20240119202817174](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119202817174.png)
+![image-20240119202817174](https://zxyandzxy.github.io/images/image-20240119202817174.png)
 
 New 语句：oi 无条件添加到 x 所指向的对象集合中
 
@@ -27,7 +27,7 @@ Store：将 y 所指向的对象全部添加到 x 所指向的对象 oi 的域 f
 
 Load：将 x 所指向的对象 oi 的域 f 所指向的对象全部添加到 y 指向的对象集合中
 
-![image-20240119203227269](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119203227269.png)
+![image-20240119203227269](https://zxyandzxy.github.io/images/image-20240119203227269.png)
 
 premise：流向
 
@@ -47,11 +47,11 @@ premise：流向
 
 边： Pointer × Pointer （边的 x**→**y 意味着被指针 x 指向的对象可能流向指针 y）
 
-![image-20240119203837777](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119203837777.png)
+![image-20240119203837777](https://zxyandzxy.github.io/images/image-20240119203837777.png)
 
 栗子：
 
-![image-20240119204016478](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119204016478.png)
+![image-20240119204016478](https://zxyandzxy.github.io/images/image-20240119204016478.png)
 
 实现指针分析：
 
@@ -61,11 +61,11 @@ premise：流向
 
 ### Pointer Analysis: Algorithms（流不敏感）
 
-![image-20240119204243128](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119204243128.png)
+![image-20240119204243128](https://zxyandzxy.github.io/images/image-20240119204243128.png)
 
 WL：存储要处理的指针指向信息 WL = [一系列<pointer，pts>]
 
-![image-20240119204528821](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119204528821.png)
+![image-20240119204528821](https://zxyandzxy.github.io/images/image-20240119204528821.png)
 
 表示 pts 这个集合里的对象要加入 pt(pointer)中，即 pts 里面的对象有可能被 pointer 指向
 
@@ -86,7 +86,7 @@ WL：存储要处理的指针指向信息 WL = [一系列<pointer，pts>]
 
 #### 规则
 
-![image-20240119210343535](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119210343535.png)
+![image-20240119210343535](https://zxyandzxy.github.io/images/image-20240119210343535.png)
 
 四步走：
 
@@ -102,7 +102,7 @@ WL：存储要处理的指针指向信息 WL = [一系列<pointer，pts>]
 
 实现时：从 main 方法出发，每次调用其他方法就加入“可达世界”中，直到所有可达方法分析完成
 
-![image-20240119211141212](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119211141212.png)
+![image-20240119211141212](https://zxyandzxy.github.io/images/image-20240119211141212.png)
 
 算法理解： slide 116 页
 
