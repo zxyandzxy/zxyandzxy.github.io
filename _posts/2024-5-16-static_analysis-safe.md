@@ -32,7 +32,7 @@ author: zxy
   - 要求高等级的变量信息对低等级的变量信息没有影响(即不应该干扰)
   - 直观地说，你不应该能够通过观察低密变量得出关于高密信息的任何结论
   - 一句话：高密信息不允许以任何形式传递给低密信息
-  - ![image-20240120124710172](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120124710172.png)
+  - ![image-20240120124710172](https://zxyandzxy.github.io/images/image-20240120124710172.png)
 
 ### Confidentiality and Integrity（对称的，可以用一种手段解决）
 
@@ -61,17 +61,17 @@ author: zxy
 
 - 简单理解就是通过控制流去泄露高级信息
 - 高等级信息影响控制流，我们就可以根据控制流信息的副作用反推高等级信息
-- ![image-20240120125258195](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120125258195.png)
+- ![image-20240120125258195](https://zxyandzxy.github.io/images/image-20240120125258195.png)
 - 这个例子里我们可以通过观察 publik 的值来确定 secret 的正负（泄露了 secret 的信息）
 
 #### Covert/Hidden Channels（隐藏信道）
 
 - 通过计算系统发送信息信号的机制称为信道。
 - 利用不以信息传递为主要目的的机制的通道称为隐蔽通道
-- ![image-20240120125515909](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120125515909.png)
+- ![image-20240120125515909](https://zxyandzxy.github.io/images/image-20240120125515909.png)
 - 上述四种均隐藏信道泄露了信息，分别通过布尔控制流，程序是否终止，程序执行时间，程序异常状态泄露了高等级信息。
 - 一般来说，显式流会比隐藏信道泄露更多信息（见下例）
-- ![image-20240120125735366](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120125735366.png)
+- ![image-20240120125735366](https://zxyandzxy.github.io/images/image-20240120125735366.png)
 
 ### Taint Analysis
 
@@ -88,7 +88,7 @@ author: zxy
 
 ##### 域与标号
 
-![image-20240120130316624](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120130316624.png)
+![image-20240120130316624](https://zxyandzxy.github.io/images/image-20240120130316624.png)
 
 ##### 输入输出
 
@@ -98,6 +98,6 @@ author: zxy
 
 ##### 规则
 
-![image-20240120130537173](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120130537173.png)
+![image-20240120130537173](https://zxyandzxy.github.io/images/image-20240120130537173.png)
 
 栗子：slide 77 页
