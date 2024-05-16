@@ -9,7 +9,7 @@ author: zxy
 
 ### Motivation（动机）
 
-![image-20240119195824538](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119195824538.png)
+![image-20240119195824538](https://zxyandzxy.github.io/images/image-20240119195824538.png)
 
 因为 CHA 不准确，所以要进行指针分析
 
@@ -39,13 +39,13 @@ author: zxy
 - 在动态执行中，由于循环和递归，堆对象的数量可以不受限制
 - 为了确保终止，堆抽象将动态分配的无界具体对象建模为静态分析的有限抽象对象
 
-![image-20240119200814763](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119200814763.png)
+![image-20240119200814763](https://zxyandzxy.github.io/images/image-20240119200814763.png)
 
 ##### allocation-site
 
 根据具体对象的 allocation-site 对其建模，即在每一个 allocation-site 建立一个抽象对象来表示在这个 allocation-site 分配的所有具体对象（allocation-site 可以理解为程序的某一行）
 
-![image-20240119201220199](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119201220199.png)
+![image-20240119201220199](https://zxyandzxy.github.io/images/image-20240119201220199.png)
 
 由于程序的 allocation-site 有限，所以抽象对象肯定有限
 
@@ -63,7 +63,7 @@ author: zxy
 | 尊重语句的执行顺序               | 忽略控制流的顺序                 |
 | 在每个程序位置维护点到关系的映射 | 为整个程序维护一个点到关系的映射 |
 
-![image-20240119201813663](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119201813663.png)
+![image-20240119201813663](https://zxyandzxy.github.io/images/image-20240119201813663.png)
 
 #### analysis scope
 
@@ -74,7 +74,7 @@ author: zxy
 
 ### Concerned Statements
 
-![image-20240119202213277](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119202213277.png)
+![image-20240119202213277](https://zxyandzxy.github.io/images/image-20240119202213277.png)
 
 只关心可能引起指针指向对象变化的语句，就上面 5 种
 
