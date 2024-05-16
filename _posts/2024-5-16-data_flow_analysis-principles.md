@@ -16,7 +16,7 @@ author: zxy
 - 每次迭代都可以看作是通过传递函数和控制流处理，将 V^k 中的一个元素映射到 V^k 中的一个新元素，抽象为函数 F: V^k→V^k
 - 然后，该算法迭代输出一系列 k 元组，直到连续两次迭代的 k 元组与最后一个相同
 
-![image-20240119161550420](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119161550420.png)
+![image-20240119161550420](https://zxyandzxy.github.io/images/image-20240119161550420.png)
 
 即最终求出了一个不动点 X = F(X)
 
@@ -24,29 +24,29 @@ author: zxy
 
 定义：P 是一个集合。偏序满足自反性，对称性，传递性
 
-![image-20240119161810629](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119161810629.png)
+![image-20240119161810629](https://zxyandzxy.github.io/images/image-20240119161810629.png)
 
 理解偏序：偏序意味着集合 P 中，不需要保证每两个元素都要满足偏序定义的二元关系
 
 ### Upper and Lower Bounds（上界与下界）
 
-![image-20240119162157030](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119162157030.png)
+![image-20240119162157030](https://zxyandzxy.github.io/images/image-20240119162157030.png)
 
-![image-20240119162203058](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119162203058.png)
+![image-20240119162203058](https://zxyandzxy.github.io/images/image-20240119162203058.png)
 
 上界和下界都是 P 中的元素。
 
 #### 最小上界（lub / join）和最大下界（glb / meet）
 
-![image-20240119162442542](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119162442542.png)
+![image-20240119162442542](https://zxyandzxy.github.io/images/image-20240119162442542.png)
 
-![image-20240119162456455](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119162456455.png)
+![image-20240119162456455](https://zxyandzxy.github.io/images/image-20240119162456455.png)
 
 即上界里面找最小和下界里面找最大
 
 ##### 特别的
 
-![image-20240119162556364](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119162556364.png)
+![image-20240119162556364](https://zxyandzxy.github.io/images/image-20240119162556364.png)
 
 #### 性质
 
@@ -57,21 +57,21 @@ author: zxy
 
 格：如果一个偏序集的每一对元素都有一个最小上界和一个最大下界，那么它就是一个格。这个最小上界和最大下界在整个偏序集里面找。
 
-![image-20240119163124784](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119163124784.png)
+![image-20240119163124784](https://zxyandzxy.github.io/images/image-20240119163124784.png)
 
 半格：最小上界和最大下界只有一个存在
 
-![image-20240119163132486](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119163132486.png)
+![image-20240119163132486](https://zxyandzxy.github.io/images/image-20240119163132486.png)
 
 全格：给定一个格，对于这个格的任意一个子集，如果这个子集的最小上界和最大下界都存在，那这个格就是全格（还可以这么判断：每一个有限格就是完全格）
 
-![image-20240119163236765](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119163236765.png)
+![image-20240119163236765](https://zxyandzxy.github.io/images/image-20240119163236765.png)
 
-![image-20240119163405540](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119163405540.png)
+![image-20240119163405540](https://zxyandzxy.github.io/images/image-20240119163405540.png)
 
 积格：
 
-![image-20240119165312198](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119165312198.png)
+![image-20240119165312198](https://zxyandzxy.github.io/images/image-20240119165312198.png)
 
 性质：
 
@@ -80,7 +80,7 @@ author: zxy
 
 ### Data Flow Analysis Framework via Lattice（基于格的数据流分析框架）
 
-![image-20240119165530333](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119165530333.png)
+![image-20240119165530333](https://zxyandzxy.github.io/images/image-20240119165530333.png)
 
 数据流分析可以看作是对格的值迭代地应用传递函数和 meet / join 操作
 
@@ -88,11 +88,11 @@ author: zxy
 
 单独性定义：
 
-![image-20240119165928156](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119165928156.png)
+![image-20240119165928156](https://zxyandzxy.github.io/images/image-20240119165928156.png)
 
 不动点定理：
 
-![image-20240119165942448](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119165942448.png)
+![image-20240119165942448](https://zxyandzxy.github.io/images/image-20240119165942448.png)
 
 证明 slide 123 页
 
@@ -104,13 +104,13 @@ author: zxy
 
 **第一步**：证明迭代算法表示的格是有限的
 
-![image-20240119171005632](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119171005632.png)
+![image-20240119171005632](https://zxyandzxy.github.io/images/image-20240119171005632.png)
 
 有 k 个程序点，每个程序点都可以表示为一个格。那么整个程序就可以表示为一个积格。由于每个格都是有限（0,1 二进制串的个数有限）和全格，那么积格也是有限和全格。
 
 **第二步**：证明迭代算法的转换函数，汇合函数是单调的
 
-![image-20240119171456894](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119171456894.png)
+![image-20240119171456894](https://zxyandzxy.github.io/images/image-20240119171456894.png)
 
 现在可以讲出三个关于迭代算法的三个结论：（用格的理论已经证明）
 
@@ -122,22 +122,22 @@ author: zxy
 
 ### May/Must Analysis, A Lattice View（以格视角观察 may/must analysis）
 
-![image-20240119172244470](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119172244470.png)
+![image-20240119172244470](https://zxyandzxy.github.io/images/image-20240119172244470.png)
 
 我们在数据流分析中设计的转换函数和控制流汇合模式决定了我们每一次向 safe 的步长都是最小的，也就决定了一定能找到最优不动点
 
 ### MOP and Distributivity（MOP 与可分配性）
 
-![image-20240119172642787](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119172642787.png)
+![image-20240119172642787](https://zxyandzxy.github.io/images/image-20240119172642787.png)
 
 - MOP 是对每条路径先应用 Fp，然后在进行 join / meet 操作
 - 由于这些路径不一定每一条都执行，所以 MOP 的结果是 sound。
 
 #### 对比迭代算法和 MOP
 
-![image-20240119172859302](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119172859302.png)
+![image-20240119172859302](https://zxyandzxy.github.io/images/image-20240119172859302.png)
 
-![image-20240119173023823](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119173023823.png)
+![image-20240119173023823](https://zxyandzxy.github.io/images/image-20240119173023823.png)
 
 到现在我们研究的到达定值，活跃变量，可用表达式的转换函数和控制流汇合模式都是可分配的
 
@@ -153,15 +153,15 @@ CFG 中每个节点的 OUT 包含一组 (x, v)，其中 x 是一个变量，v �
 
 域及汇合操作符
 
-![image-20240119173437015](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119173437015.png)
+![image-20240119173437015](https://zxyandzxy.github.io/images/image-20240119173437015.png)
 
 转换函数
 
-![image-20240119173526970](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119173526970.png)
+![image-20240119173526970](https://zxyandzxy.github.io/images/image-20240119173526970.png)
 
 ### Worklist Algorithm（工作流算法）
 
-![image-20240119173800132](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119173800132.png)
+![image-20240119173800132](https://zxyandzxy.github.io/images/image-20240119173800132.png)
 
 - 如果前序 OUT[]不变，那么它的后继 IN[]不变，IN[]不变，OUT[]必然不变
 - 只要考虑 OUT[]值变了的节点的后继，这样就减少了每轮迭代要访问的节点，减小复杂度
