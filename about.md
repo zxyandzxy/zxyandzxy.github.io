@@ -14,4 +14,8 @@ permalink: /about/
 
 ## 版权声明
 
-本博客文章都是我的原创文章，版权归我所有，转载请与我联系获得授权许可。
+本博客文章，部分是转载于网络，是本人阅读他人博客的心得与记录，部分是原创。
+
+转载文章，遵循原作者的版权声明，如果文章中没有明确标明，则默认遵循[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)协议。
+
+原创文章，遵循[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)协议。
