@@ -29,7 +29,7 @@ author: zxy
 
 ### Hard Language Feature: Java Reflection
 
-定义：![image-20240120153341230](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120153341230.png)
+定义：![image-20240120153341230](https://zxyandzxy.github.io/images/image-20240120153341230.png)
 
 为什么需要分析反射：
 
@@ -59,6 +59,6 @@ author: zxy
 
 JNI 就是 JVM 提供的一个函数模块，允许 Java 和用 C++/C 写的本地代码交互
 
-![image-20240120153756229](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120153756229.png)
+![image-20240120153756229](https://zxyandzxy.github.io/images/image-20240120153756229.png)
 
 JNI 用于帮助使用内存管理，文件系统等和操作系统相关的机制，也可以使用 JNI 提供的一些功能，实现代码重用
