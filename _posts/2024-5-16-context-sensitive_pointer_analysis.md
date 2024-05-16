@@ -28,7 +28,7 @@ author: zxy
 - 变量也由上下文限定(从声明它们的方法继承上下文)
 - 实际上，每个方法及其变量都是克隆的，每个上下文一个克隆
 
-![image-20240120113040854](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120113040854.png)
+![image-20240120113040854](https://zxyandzxy.github.io/images/image-20240120113040854.png)
 
 #### 上下文敏感+堆抽象
 
@@ -36,7 +36,7 @@ author: zxy
 - 抽象对象也由上下文限定(称为堆上下文)。
 - 上下文敏感的堆抽象在 call site 抽象之上提供了更细粒度的堆模型
 
-![image-20240120113309136](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120113309136.png)
+![image-20240120113309136](https://zxyandzxy.github.io/images/image-20240120113309136.png)
 
 ##### 上下文敏感堆可以提高精度
 
@@ -47,19 +47,19 @@ author: zxy
 - 总结：在精度上 上下文敏感堆 > 上下文敏感无堆 > 上下文不敏感
 - 栗子见 slide 34 页
 
-![image-20240120113631406](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120113631406.png)
+![image-20240120113631406](https://zxyandzxy.github.io/images/image-20240120113631406.png)
 
 ### Context Sensitive Pointer Analysis: Rules
 
 #### 域及符号
 
-![image-20240120114253657](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120114253657.png)
+![image-20240120114253657](https://zxyandzxy.github.io/images/image-20240120114253657.png)
 
 #### 规则
 
-![image-20240120114447800](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120114447800.png)
+![image-20240120114447800](https://zxyandzxy.github.io/images/image-20240120114447800.png)
 
-![image-20240120114525180](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120114525180.png)
+![image-20240120114525180](https://zxyandzxy.github.io/images/image-20240120114525180.png)
 
 具有上下文的方法调用：
 
@@ -71,25 +71,25 @@ author: zxy
 
 ### Context Sensitive Pointer Analysis: Algorithms
 
-![image-20240120115018260](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120115018260.png)
+![image-20240120115018260](https://zxyandzxy.github.io/images/image-20240120115018260.png)
 
 - 带着上下文信息建立 PFG 图和传递指针信息
 - Nodes: CSPointer = (C × V) ⋃ (C × O × F) 节点 n 表示上下文敏感的变量或上下文敏感的抽象对象
 - Edges: CSPointer × CSPointer 一条边 x->y 代表 x 指向的对象可能会流向 y 指向的对象
 
-![image-20240120115224831](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120115224831.png)
+![image-20240120115224831](https://zxyandzxy.github.io/images/image-20240120115224831.png)
 
-![image-20240120115259118](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120115259118.png)
+![image-20240120115259118](https://zxyandzxy.github.io/images/image-20240120115259118.png)
 
 #### 算法
 
-![image-20240120115825983](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120115825983.png)
+![image-20240120115825983](https://zxyandzxy.github.io/images/image-20240120115825983.png)
 
 算法解释 slide 88 页 开始的 main 方法默认没有上下文
 
 ### Context Sensitivity Variants（如何设计 select 方法）
 
-![image-20240120120309583](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120120309583.png)
+![image-20240120120309583](https://zxyandzxy.github.io/images/image-20240120120309583.png)
 
 #### context insensitivity
 
@@ -101,9 +101,9 @@ author: zxy
 - 上下文用一系列 call-site 描述
 - 在方法调用时，将 call-site 作为被调用方法的上下文附加到调用方法的上下文
 - 本质上是对动态运行时调用栈的抽象
-- ![image-20240120120350031](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120120350031.png)
+- ![image-20240120120350031](https://zxyandzxy.github.io/images/image-20240120120350031.png)
 - 一般来说，这里的 call-site 数量最多是 k 个，即保留后 k 个 call-site 作为上下文
-- ![image-20240120120626651](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120120626651.png)
+- ![image-20240120120626651](https://zxyandzxy.github.io/images/image-20240120120626651.png)
 - 栗子： slide 116 页
 
 #### object sensitivity
@@ -123,9 +123,9 @@ author: zxy
 - 上下文由一系列类型组成
 - 在方法调用时，使用包含接收器对象的分配位置及其堆上下文的类型作为被调用上下文
 - 是对对象敏感性的粗略抽象
-- ![image-20240120121727652](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120121727652.png)
+- ![image-20240120121727652](https://zxyandzxy.github.io/images/image-20240120121727652.png)
 - 相同 k 的限制下，type sensitivity 的精度低于 object sensitivity，但是速度更快
-- ![image-20240120121918568](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240120121918568.png)
+- ![image-20240120121918568](https://zxyandzxy.github.io/images/image-20240120121918568.png)
 
 ### 重点问题：
 
