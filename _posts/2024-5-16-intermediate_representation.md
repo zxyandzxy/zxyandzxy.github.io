@@ -9,7 +9,7 @@ author: zxy
 
 ### Compilers and Static Analyzers（编译器与静态分析）
 
-![image-20240119124235077](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119124235077.png)
+![image-20240119124235077](https://zxyandzxy.github.io/images/image-20240119124235077.png)
 
 静态分析基本都是基于 IR 来做的，这就是编译与静态分析的关系
 
@@ -30,13 +30,13 @@ IR：
 - 包含控制流信息
 - 通常被认为是静态分析的基础
 
-![image-20240119124506712](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119124506712.png)
+![image-20240119124506712](https://zxyandzxy.github.io/images/image-20240119124506712.png)
 
 ### IR: Three-Address Code (3AC)（三地址码）
 
 定义：最多一个操作符，地址可以是变量名，常量，编译器临时变量
 
-![image-20240119124658101](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20240119124658101.png)
+![image-20240119124658101](https://zxyandzxy.github.io/images/image-20240119124658101.png)
 
 ### Static Single Assignment (SSA)（静态单赋值）
 
