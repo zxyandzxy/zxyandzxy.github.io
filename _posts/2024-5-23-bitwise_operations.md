@@ -1509,20 +1509,543 @@ public:
 };
 ```
 
-
-
 ## 拆位 / 贡献法
 
+### 477.汉明距离总和
 
+**题目：**
 
+两个整数的 [汉明距离](https://baike.baidu.com/item/汉明距离/475174?fr=aladdin) 指的是这两个数字的二进制数对应位不同的数量。
 
+给你一个整数数组 `nums`，请你计算并返回 `nums` 中任意两个数之间 **汉明距离的总和** 。
+
+**示例 1：**
+
+```
+输入：nums = [4,14,2]
+输出：6
+解释：在二进制表示中，4 表示为 0100 ，14 表示为 1110 ，2表示为 0010 。（这样表示是为了体现后四位之间关系）
+所以答案为：
+HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6
+```
+
+**示例 2：**
+
+```
+输入：nums = [4,14,4]
+输出：4
+```
+
+**提示：**
+
+- `1 <= nums.length <= 104`
+- `0 <= nums[i] <= 109`
+- 给定输入的对应答案符合 **32-bit** 整数范围
+
+**思路：**
+
+```
+暴力枚举nums中的任意两个数字，然后统计他们异或后结果中1的个数即可
+```
+
+**代码：**
+
+```cpp
+class Solution {
+public:
+    int totalHammingDistance(vector<int>& nums) {
+        int ans = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = i + 1; j < nums.size(); j++) {
+                ans += __builtin_popcount(nums[i] ^ nums[j]);
+            }
+        }
+        return ans;
+    }
+};
+```
+
+### 1863.找出所有子集的异或总和再求和
+
+**题目：**
+
+一个数组的 **异或总和** 定义为数组中所有元素按位 `XOR` 的结果；如果数组为 **空** ，则异或总和为 `0` 。
+
+- 例如，数组 `[2,5,6]` 的 **异或总和** 为 `2 XOR 5 XOR 6 = 1` 。
+
+给你一个数组 `nums` ，请你求出 `nums` 中每个 **子集** 的 **异或总和** ，计算并返回这些值相加之 **和** 。**注意：**在本题中，元素 **相同** 的不同子集应 **多次** 计数。数组 `a` 是数组 `b` 的一个 **子集** 的前提条件是：从 `b` 删除几个（也可能不删除）元素能够得到 `a` 。
+
+**示例 1：**
+
+```
+输入：nums = [1,3]
+输出：6
+解释：[1,3] 共有 4 个子集：
+- 空子集的异或总和是 0 。
+- [1] 的异或总和为 1 。
+- [3] 的异或总和为 3 。
+- [1,3] 的异或总和为 1 XOR 3 = 2 。
+0 + 1 + 3 + 2 = 6
+```
+
+**提示：**
+
+- `1 <= nums.length <= 12`
+- `1 <= nums[i] <= 20`
+
+**思路：**
+
+```
+先求子集，再对每个子集进行异或和相加
+```
+
+**代码：**
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> result;
+    vector<int> path;
+    void backtracking(vector<int>& nums, int start) {
+        result.push_back(path);
+        for (int i = start; i < nums.size(); i++) {
+            path.push_back(nums[i]);
+            backtracking(nums, i + 1);
+            path.pop_back();
+        }
+    }
+    int subsetXORSum(vector<int>& nums) {
+        backtracking(nums, 0);
+        int ans = 0;
+        for (int i = 0; i < result.size(); i++) {
+            if (result[i].size() == 0) continue;
+            int cur = result[i][0];
+            for (int j = 1; j < result[i].size(); j++) {
+                cur ^= result[i][j];
+            }
+            ans += cur;
+        }
+        return ans;
+    }
+};
+```
+
+### 2425.所有数对的异或和
+
+**题目：**
+
+给你两个下标从 **0** 开始的数组 `nums1` 和 `nums2` ，两个数组都只包含非负整数。请你求出另外一个数组 `nums3` ，包含 `nums1` 和 `nums2` 中 **所有数对** 的异或和（`nums1` 中每个整数都跟 `nums2` 中每个整数 **恰好** 匹配一次）。
+
+请你返回 `nums3` 中所有整数的 **异或和** 。
+
+**示例 1：**
+
+```
+输入：nums1 = [2,1,3], nums2 = [10,2,5,0]
+输出：13
+解释：
+一个可能的 nums3 数组是 [8,0,7,2,11,3,4,1,9,1,6,3] 。
+所有这些数字的异或和是 13 ，所以我们返回 13 。
+```
+
+**示例 2：**
+
+```
+输入：nums1 = [1,2], nums2 = [3,4]
+输出：0
+解释：
+所有数对异或和的结果分别为 nums1[0] ^ nums2[0] ，nums1[0] ^ nums2[1] ，nums1[1] ^ nums2[0] 和 nums1[1] ^ nums2[1] 。
+所以，一个可能的 nums3 数组是 [2,5,1,6] 。
+2 ^ 5 ^ 1 ^ 6 = 0 ，所以我们返回 0 。
+```
+
+**提示：**
+
+- `1 <= nums1.length, nums2.length <= 105`
+- `0 <= nums1[i], nums2[j] <= 109`
+
+**思路：**
+
+```
+暴力枚举每个数对，然后进行异或运算
+```
+
+**代码：**
+
+```cpp
+class Solution {
+public:
+    int xorAllNums(vector<int>& nums1, vector<int>& nums2) {
+        int n = nums1.size(), m = nums2.size();
+        vector<int> result(n * m);
+        int ans;
+        int idx = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                result[idx++] = nums1[i] ^ nums2[j];
+                if (idx == 1) ans = result[0];
+                else ans ^= result[idx - 1];
+            }
+        }
+        return ans;
+    }
+};
+```
+
+### 2275.按位与结果大于0的最长组合
+
+**题目：**
+
+对数组 `nums` 执行 **按位与** 相当于对数组 `nums` 中的所有整数执行 **按位与** 。
+
+- 例如，对 `nums = [1, 5, 3]` 来说，按位与等于 `1 & 5 & 3 = 1` 。
+- 同样，对 `nums = [7]` 而言，按位与等于 `7` 。
+
+给你一个正整数数组 `candidates` 。计算 `candidates` 中的数字每种组合下 **按位与** 的结果。 `candidates` 中的每个数字在每种组合中只能使用 **一次** 。
+
+返回按位与结果大于 `0` 的 **最长** 组合的长度*。*
+
+**示例 1：**
+
+```
+输入：candidates = [16,17,71,62,12,24,14]
+输出：4
+解释：组合 [16,17,62,24] 的按位与结果是 16 & 17 & 62 & 24 = 16 > 0 。
+组合长度是 4 。
+可以证明不存在按位与结果大于 0 且长度大于 4 的组合。
+注意，符合长度最大的组合可能不止一种。
+例如，组合 [62,12,24,14] 的按位与结果是 62 & 12 & 24 & 14 = 8 > 0 。
+```
+
+**示例 2：**
+
+```
+输入：candidates = [8,8]
+输出：2
+解释：最长组合是 [8,8] ，按位与结果 8 & 8 = 8 > 0 。
+组合长度是 2 ，所以返回 2 。
+```
+
+**提示：**
+
+- `1 <= candidates.length <= 105`
+- `1 <= candidates[i] <= 107`
+
+**思路：**
+
+```
+先回溯法求出所有子集
+对每个子集进行按位与，找最长即可
+```
+
+**代码：**
+
+```cpp
+class Solution {
+public:
+    vector<vector<int>> result;
+    vector<int> path;
+    void backtracking(vector<int>& candidates, int start) {
+        result.push_back(path);
+        for (int i = start; i < candidates.size(); i++) {
+            path.push_back(candidates[i]);
+            backtracking(candidates, i + 1);
+            path.pop_back();
+        }
+    }
+    int largestCombination(vector<int>& candidates) {
+        backtracking(candidates, 0);
+        int ans = 0;
+        for (int i = 0; i < result.size(); i++) {
+            if (result[i].size() == 0) continue;
+            int cur = result[i][0];
+            for (int j = 1; j < result[i].size(); j++) {
+                cur &= result[i][j];
+            }
+            if (cur) {
+                if (ans < result[i].size()) {
+                    ans = result[i].size();
+                }
+            }
+        }
+        return ans;
+    }
+};
+```
 
 ## 试填法
 
+### 3007.价值和小于等于K的最大数字
 
+**题目：**
+
+给你一个整数 `k` 和一个整数 `x` 。整数 `num` 的价值是它的二进制表示中在 `x`，`2x`，`3x` 等位置处 **设置位**的数目（从最低有效位开始）。下面的表格包含了如何计算价值的例子。
+
+| x    | num  | Binary Representation | Price |
+| ---- | ---- | --------------------- | ----- |
+| 1    | 13   | 00000**11**0**1**     | 3     |
+| 2    | 13   | 00000**1**101         | 1     |
+| 2    | 233  | 0**1**1**1**0**1**001 | 3     |
+| 3    | 13   | 000001**1**01         | 1     |
+| 3    | 362  | **1**01**1**01010     | 2     |
+
+`num` 的 **累加价值** 是从 `1` 到 `num` 的数字的 **总** 价值。如果 `num` 的累加价值小于或等于 `k` 则被认为是 **廉价** 的。请你返回 **最大** 的廉价数字。
+
+**示例 1：**
+
+```
+输入：k = 9, x = 1
+输出：6
+解释：由下表所示，6 是最大的廉价数字。
+```
+
+| x    | num  | Binary Representation | Price | Accumulated Price |
+| ---- | ---- | --------------------- | ----- | ----------------- |
+| 1    | 1    | 00**1**               | 1     | 1                 |
+| 1    | 2    | 0**1**0               | 1     | 2                 |
+| 1    | 3    | 0**11**               | 2     | 4                 |
+| 1    | 4    | **1**00               | 1     | 5                 |
+| 1    | 5    | **1**0**1**           | 2     | 7                 |
+| 1    | 6    | **11**0               | 2     | 9                 |
+| 1    | 7    | **111**               | 3     | 12                |
+
+**思路：**
+
+```
+关键就是模拟求一个数字价值的过程
+```
+
+**代码：**
+
+```cpp
+class Solution {
+public:
+    long long getPrice(long long num, int x) {
+        int ans = 0;
+        int cnt = 1;
+        while (num) {
+            if (cnt == x) {
+                ans += (num & 1);
+                cnt = 0;
+            }
+            num >>= 1;
+            cnt++;
+        }
+        return ans;
+    }
+    long long findMaximumNumber(long long k, int x) {
+        long long s = 0;
+        long long idx = 1;
+        while (s <= k) {
+            s += getPrice(idx++, x);
+        }
+        return idx - 2;
+    }
+};
+```
+
+### 2935.找出强数对的最大异或值II
+
+**题目：**
+
+给你一个下标从 **0** 开始的整数数组 `nums` 。如果一对整数 `x` 和 `y` 满足以下条件，则称其为 **强数对** ：
+
+- `|x - y| <= min(x, y)`
+
+你需要从 `nums` 中选出两个整数，且满足：这两个整数可以形成一个强数对，并且它们的按位异或（`XOR`）值是在该数组所有强数对中的 **最大值** 。
+
+返回数组 `nums` 所有可能的强数对中的 **最大** 异或值。**注意**，你可以选择同一个整数两次来形成一个强数对。
+
+**示例 1：**
+
+```
+输入：nums = [1,2,3,4,5]
+输出：7
+解释：数组 nums 中有 11 个强数对：(1, 1), (1, 2), (2, 2), (2, 3), (2, 4), (3, 3), (3, 4), (3, 5), (4, 4), (4, 5) 和 (5, 5) 。
+这些强数对中的最大异或值是 3 XOR 4 = 7 。
+```
+
+**示例 2：**
+
+```
+输入：nums = [10,100]
+输出：0
+解释：数组 nums 中有 2 个强数对：(10, 10) 和 (100, 100) 。
+这些强数对中的最大异或值是 10 XOR 10 = 0 ，数对 (100, 100) 的异或值也是 100 XOR 100 = 0 。
+```
+
+**提示：**
+
+- `1 <= nums.length <= 5 * 104`
+- `1 <= nums[i] <= 220 - 1`
+
+**思路：**
+
+```
+暴力求解所有强数对，然后取强数对最大值
+```
+
+**代码：**
+
+```cpp
+class Solution {
+public:
+    int maximumStrongPairXor(vector<int>& nums) {
+        int ans = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = i + 1; j < nums.size(); j++) {
+                if (abs(nums[i] - nums[j]) <= min(nums[i], nums[j])) {
+                    ans = max(ans, nums[i] ^ nums[j]);
+                }
+            }
+        }
+        return ans;
+    }
+};
+```
 
 ## 恒等式
 
+### 2354.优质数对的数目
+
+**题目：**
+
+给你一个下标从 **0** 开始的正整数数组 `nums` 和一个正整数 `k` 。
+
+如果满足下述条件，则数对 `(num1, num2)` 是 **优质数对** ：
+
+- `num1` 和 `num2` **都** 在数组 `nums` 中存在。
+- `num1 OR num2` 和 `num1 AND num2` 的二进制表示中值为 **1** 的位数之和大于等于 `k` ，其中 `OR` 是按位 **或** 操作，而 `AND` 是按位 **与** 操作。
+
+返回 **不同** 优质数对的数目。如果 `a != c` 或者 `b != d` ，则认为 `(a, b)` 和 `(c, d)` 是不同的两个数对。例如，`(1, 2)` 和 `(2, 1)` 不同。
+
+**注意：**如果 `num1` 在数组中至少出现 **一次** ，则满足 `num1 == num2` 的数对 `(num1, num2)` 也可以是优质数对。
+
+**示例 1：**
+
+```
+输入：nums = [1,2,3,1], k = 3
+输出：5
+解释：有如下几个优质数对：
+- (3, 3)：(3 AND 3) 和 (3 OR 3) 的二进制表示都等于 (11) 。值为 1 的位数和等于 2 + 2 = 4 ，大于等于 k = 3 。
+- (2, 3) 和 (3, 2)： (2 AND 3) 的二进制表示等于 (10) ，(2 OR 3) 的二进制表示等于 (11) 。值为 1 的位数和等于 1 + 2 = 3 。
+- (1, 3) 和 (3, 1)： (1 AND 3) 的二进制表示等于 (01) ，(1 OR 3) 的二进制表示等于 (11) 。值为 1 的位数和等于 1 + 2 = 3 。
+所以优质数对的数目是 5 。
+```
+
+**示例 2：**
+
+```
+输入：nums = [5,1,1], k = 10
+输出：0
+解释：该数组中不存在优质数对。
+```
+
+**提示：**
+
+- `1 <= nums.length <= 105`
+- `1 <= nums[i] <= 109`
+- `1 <= k <= 60`
+
+**思路：**
+
+```
+暴力枚举所有数对，利用set去重，统计所有优质数对个数
+```
+
+**代码：**
+
+```cpp
+class Solution {
+public:
+    long long countExcellentPairs(vector<int>& nums, int k) {
+        set<pair<int, int>> hash;
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = 0; j < nums.size(); j++) {
+                if (hash.find({nums[i], nums[j]}) == hash.end()) {
+                    if (__builtin_popcount(nums[i] & nums[j]) + __builtin_popcount(nums[i] | nums[j]) >= k) {
+                        hash.insert({nums[i], nums[j]});
+                    }
+                }
+            }
+        }
+        return hash.size();
+    }
+};
+```
+
+### 1835.所有数对按位与结果的异或和
+
+**题目：**
+
+列表的 **异或和**（**XOR sum**）指对所有元素进行按位 `XOR` 运算的结果。如果列表中仅有一个元素，那么其 **异或和** 就等于该元素。
+
+- 例如，`[1,2,3,4]` 的 **异或和** 等于 `1 XOR 2 XOR 3 XOR 4 = 4` ，而 `[3]` 的 **异或和** 等于 `3` 。
+
+给你两个下标 **从 0 开始** 计数的数组 `arr1` 和 `arr2` ，两数组均由非负整数组成。根据每个 `(i, j)` 数对，构造一个由 `arr1[i] AND arr2[j]`（按位 `AND` 运算）结果组成的列表。其中 `0 <= i < arr1.length` 且 `0 <= j < arr2.length` 。返回上述列表的 **异或和** 。
+
+**示例 1：**
+
+```
+输入：arr1 = [1,2,3], arr2 = [6,5]
+输出：0
+解释：列表 = [1 AND 6, 1 AND 5, 2 AND 6, 2 AND 5, 3 AND 6, 3 AND 5] = [0,1,2,0,2,1] ，
+异或和 = 0 XOR 1 XOR 2 XOR 0 XOR 2 XOR 1 = 0 。
+```
+
+**示例 2：**
+
+```
+输入：arr1 = [12], arr2 = [4]
+输出：4
+解释：列表 = [12 AND 4] = [4] ，异或和 = 4 。
+```
+
+**提示：**
+
+- `1 <= arr1.length, arr2.length <= 105`
+- `0 <= arr1[i], arr2[j] <= 109`
+
+**思路：**
+
+```
+暴力构造所有数对，再进行异或和
+```
+
+**代码：**
+
+```cpp
+class Solution {
+public:
+    int getXORSum(vector<int>& arr1, vector<int>& arr2) {
+        int n = arr1.size(), m = arr2.size();
+        vector<int> result(n * m);
+        int idx = 0;
+        int ans;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                result[idx++] = arr1[i] & arr2[j];
+            }
+        }
+        for (int i = 0; i < n * m; i++) {
+            if (i == 0) ans = result[i];
+            else ans ^= result[i];
+        }
+        return ans;
+    }
+};
+```
 
 
-## 思维题（贪心、脑筋急转弯等）
+
+
+
+
+
+
+
+
+
+
+
+## 
