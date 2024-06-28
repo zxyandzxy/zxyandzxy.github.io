@@ -8,6 +8,8 @@ author: zxy
 ---
 
 > 编写可读代码的艺术——阅读笔记
+>
+> 书本笔记链接：[read_books: 一些书本的阅读 (gitee.com)](https://gitee.com/zou-xinyu6/read_books)
 
 ## 第一章：代码应当易于理解
 
