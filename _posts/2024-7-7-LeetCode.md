@@ -62,7 +62,7 @@ author: zxy
 ```cpp
 class Solution {
 public:
-    int dire[8][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
+    int dire[8][2] = { {1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1} };
     bool isValidPath(vector<vector<char>>& board, int idx, int rMove, int cMove, char color) {
         int pathLen = 1;
         int nextRow = rMove + dire[idx][0], nextCol = cMove + dire[idx][1];
@@ -89,4 +89,3 @@ public:
     }
 };
 ```
-
