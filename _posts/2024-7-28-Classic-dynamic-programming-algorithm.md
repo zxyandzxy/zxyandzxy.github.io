@@ -270,7 +270,7 @@ public:
 ```cpp
 class Solution {
 public:
-    // envelopes = {{w, h}, {w, h}...}
+    // envelopes = { { w, h }, { w, h }...}
     int maxEnvelopes(vector<vector<int>>& envelopes) {
         int n = envelopes.size();
         // 按宽度升序排列，如果宽度一样，则按高度降序排列
