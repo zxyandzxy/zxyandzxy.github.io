@@ -106,3 +106,7 @@ author: zxy
 ### 为争取千百万群众进入抗日民族统一战线而斗争
 
 ![](https://zxyandzxy.github.io/images/%E6%AF%9B%E6%B3%BD%E4%B8%9C%E9%80%89%E9%9B%861-15,1-16.png)
+
+### 抗日游击战争的战略问题
+
+![](C:\Users\zxy\Desktop\毛泽东选集2-8.png)
