@@ -109,4 +109,4 @@ author: zxy
 
 ### 抗日游击战争的战略问题
 
-![](C:\Users\zxy\Desktop\毛泽东选集2-8.png)
+![](https://zxyandzxy.github.io/images/202409231451837.png)
