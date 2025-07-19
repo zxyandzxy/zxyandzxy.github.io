@@ -95,13 +95,13 @@ PLM本身是经历过大量语料库训练的，所以具有大量的通用领�
 
 原论文：[[2206.06522\] LST: Ladder Side-Tuning for Parameter and Memory Efficient Transfer Learning](https://arxiv.org/abs/2206.06522)
 
-![image-20250228101451352](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228101451352.png)
+![image-20250228101451352](https://zxyandzxy.github.io/images/202506301133675.png)
 
 >Prefix-Tuning
 
 原论文：[[2101.00190\] Prefix-Tuning: Optimizing Continuous Prompts for Generation](https://arxiv.org/abs/2101.00190)
 
-![image-20250228101634926](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228101634926.png)
+![image-20250228101634926](https://zxyandzxy.github.io/images/202507192123788.png)
 
 #### Specification-based
 
@@ -119,7 +119,7 @@ PLM本身是经历过大量语料库训练的，所以具有大量的通用领�
 
 >原论文：[[2106.09685\] LoRA: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685)
 
-![image-20250228102518920](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228102518920.png)
+![image-20250228102518920](https://zxyandzxy.github.io/images/202507192123262.png)
 
 ## Efficient Training 
 
@@ -141,7 +141,7 @@ PLM越来越大，所带来的不仅是模型性能的提升，也带来的训�
 
 3. 为支持正向传播和方向传播所需要存储的中间信息
 
-   ![image-20250228105943891](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228105943891.png)
+   ![image-20250228105943891](https://zxyandzxy.github.io/images/202507192125045.png)
 
 4. 为支持参数优化所需要的优化器带来的额外信息
 
@@ -151,7 +151,7 @@ PLM越来越大，所带来的不仅是模型性能的提升，也带来的训�
 
 > 核心思想是将训练数据等分到每张可用显卡中进行并行训练，然后取多张训练的平均梯度更新参数
 
-![image-20250228110502603](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228110502603.png)
+![image-20250228110502603](https://zxyandzxy.github.io/images/202507192125203.png)
 
 > 显卡之间的操作算子
 
@@ -163,54 +163,54 @@ PLM越来越大，所带来的不仅是模型性能的提升，也带来的训�
 
 4. reduce scatter：规约散播算子，将所有显卡的数据规约（求和，求平均等），然后每张显卡只得到规约结果的一部分参数
 
-   ![image-20250228111337793](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228111337793.png)
+   ![image-20250228111337793](https://zxyandzxy.github.io/images/202507192130828.png)
 
 5. all gather：收集算子，将所有显卡的结果拼接，复制到所有显卡上
 
-   ![image-20250228111415448](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228111415448.png)
+   ![image-20250228111415448](https://zxyandzxy.github.io/images/202507192130130.png)
 
 > 通过分布式数据并行优化训练过程
 
-![image-20250228111655795](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228111655795.png)
+![image-20250228111655795](https://zxyandzxy.github.io/images/202507192130140.png)
 
 通过分布式数据并行是可以减轻显卡存储压力的。由于将训练数据等分，那么n张显卡中保存的中间计算数据就变成了1/n
 
-![image-20250228111912568](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228111912568.png)
+![image-20250228111912568](https://zxyandzxy.github.io/images/202507192138516.png)
 
 ### 模型并行（Model Parallel）
 
 > 核心思想是每张显卡中只放置模型的一部分参数，所有数据都只训练这一部分参数，由于矩阵乘法的性质，这种参数更新方式是可行的。对显卡的优化也表现在参数，梯度，优化器部分的数据量都变为原来的1/ n 
 
-![image-20250228113400024](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228113400024.png)
+![image-20250228113400024](https://zxyandzxy.github.io/images/202507192138631.png)
 
 ### ZeRo（Zero Redundancy Optimizer）
 
 - [Optimizer state sharding (ZeRO) - 知乎](https://zhuanlan.zhihu.com/p/394064174)
 - [ZeRO: Zero Redundancy Optimizer，一篇就够了。 - 知乎](https://zhuanlan.zhihu.com/p/663517415)
 
-![image-20250228114950295](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228114950295.png)
+![image-20250228114950295](https://zxyandzxy.github.io/images/202507192138691.png)
 
-![image-20250228115041228](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228115041228.png)
+![image-20250228115041228](https://zxyandzxy.github.io/images/202507192138219.png)
 
-![image-20250228115141136](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228115141136.png)
+![image-20250228115141136](https://zxyandzxy.github.io/images/202507192139930.png)
 
-![image-20250228115206913](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228115206913.png)
+![image-20250228115206913](https://zxyandzxy.github.io/images/202507192139689.png)
 
 ### 流水线并行（pipeline parallel）
 
 > 将transformer的每一层放在一张显卡上，没有加速训练，只是减轻了显存压力
 
-![image-20250228115500267](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228115500267.png)
+![image-20250228115500267](https://zxyandzxy.github.io/images/202507192139436.png)
 
 ### 混合精度训练
 
 > 核心思想是合理（避免数据下溢导致精度丢失）使用FP16精度的数据存储形式来加速训练
 
-![image-20250228161104939](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228161104939.png)
+![image-20250228161104939](https://zxyandzxy.github.io/images/202507192139016.png)
 
 由于权重的更新约为`梯度*学习率`，所以在优化器更新中使用FP32来存储，模型参数和梯度本身使用FP16也不会溢出
 
-![image-20250228161230540](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228161230540.png)
+![image-20250228161230540](https://zxyandzxy.github.io/images/202507192139186.png)
 
 ### Offloading
 
@@ -218,7 +218,7 @@ PLM越来越大，所带来的不仅是模型性能的提升，也带来的训�
 >
 > 那么CPU会成为计算速度的瓶颈吗？不会，因为经过了ZeRo3优化后，每张GPU上的数据量已经被缩小了n倍；同时我们再将一张GPU对应多张CPU，就可以保证训练速度了
 
-![image-20250228161546064](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228161546064.png)
+![image-20250228161546064](https://zxyandzxy.github.io/images/202507192139423.png)
 
 ### Overlapping
 
@@ -226,7 +226,7 @@ PLM越来越大，所带来的不仅是模型性能的提升，也带来的训�
 >
 > 也就是在Layer1层进行前向传播计算时，Layer2层的参数通过Gather算子计算
 
-![image-20250228162139089](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228162139089.png)
+![image-20250228162139089](https://zxyandzxy.github.io/images/202507192139757.png)
 
 ### Checkpointing
 
@@ -234,7 +234,7 @@ PLM越来越大，所带来的不仅是模型性能的提升，也带来的训�
 >
 > 在transformer架构中，我们可以不保存所有的前向传播信息，只保留输入信息。当反向传播需要隐藏层状态时，我们假装进行一个前向传播，通过输入信息获得隐藏层状态，从而进行反向传播。这样GPU中就只需要保存每一层的输入信息了。
 
-![image-20250228163253949](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250228163253949.png)
+![image-20250228163253949](https://zxyandzxy.github.io/images/202507192140756.png)
 
 ## Model Compression
 

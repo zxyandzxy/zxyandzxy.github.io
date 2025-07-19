@@ -21,7 +21,7 @@ author: zxy
 
 强化学习（Reinforcement Learning，RL）研究的问题是智能体（Agent）与环境（Environment） 交互的问题，其目标是使智能体在复杂且不确定的环境中最大化奖励（Reward）。强化学习基本框架如图 所示，主要由两部分组成：智能体和环境。在强化学习过程中，智能体与环境不断交互。
 
-<img src="https://pic3.zhimg.com/v2-3b375dd479626f33ebc50dd7cba374fc_1440w.webp?consumer=ZHI_MENG" alt="img" style="zoom:50%;" />
+<img src="https://zxyandzxy.github.io/images/202506301128753.webp" alt="img" style="zoom:50%;" />
 
 智能体在环境中获取某个状态后，会根据该状态输出一个动作（Action），也称为决策（Decision）。 动作会在环境中执行，环境会根据智能体采取的动作，给出下一个状态以及当前动作所带来的奖励。智能体的目标就是尽可能多地从环境中获取奖励。
 

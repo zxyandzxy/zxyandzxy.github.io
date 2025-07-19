@@ -225,7 +225,7 @@ dpo_trainer.train()
 
 我们的模型现在已进行微调。您可以在 Weights & Biases 上通过 [this address](https://wandb.ai/mlabonne/NeuralHermes-2-5-Mistral-7B/runs/axe71gr0?workspace=user-mlabonne)查看项目。这里有一些有趣的指标供您分析：
 
-![image-20250629104032914](C:\Users\zxy\AppData\Roaming\Typora\typora-user-images\image-20250629104032914.png)
+![image-20250629104032914](https://zxyandzxy.github.io/images/202506301128001.png)
 
 有趣的是，尽管有 100 个预热步骤，训练损失在 50 步之前迅速降至零。与此同时，其他指标仍在持续变化。
 
